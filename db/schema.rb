@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_07_225708) do
+ActiveRecord::Schema.define(version: 2022_01_13_041726) do
 
   create_table "events", force: :cascade do |t|
     t.bigint "owner_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_01_07_225708) do
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"event_id,\", \"user_id\"", name: "index_tickets_on_event_id,_and_user_id", unique: true
+    t.index ["event_id", "user_id"], name: "index_tickets_on_event_id_and_user_id", unique: true
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
