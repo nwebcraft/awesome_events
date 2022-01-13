@@ -3,5 +3,6 @@ class WelcomeController < ApplicationController
 
   def index
     @events = Event.where("start_at > ?", Time.zone.now).order(start_at: :asc)
+    # @events = Event.order(start_at: :asc)
   end
 end
