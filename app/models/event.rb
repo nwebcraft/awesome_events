@@ -11,7 +11,7 @@ class Event < ApplicationRecord
 
   def created_by?(user)
     return false unless user
-    owner == user
+    owner.id == user.id
   end
 
   private
