@@ -66,3 +66,5 @@ gem 'pry-byebug'
 gem 'active_storage_validations', '~> 0.8.8'
 
 gem 'kaminari', '~> 1.2.0'
+
+gem 'searchkick', '~> 4.3.0'
