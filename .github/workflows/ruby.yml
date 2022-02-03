@@ -29,6 +29,18 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Configure sysctl limits
+      run: |
+        sudo swapoff -a
+        sudo sysctl -w vm.swappiness=1
+        sudo sysctl -w fs.file-max=262144
+        sudo sysctl -w vm.max_map_count=262144
+    - name: Run Elasticsearch
+      uses: perfect-ruby-on-rails/elasticsearch-with-plugins-action@v1
+      with:
+        stack-version: 7.6.0
+        plugins: |
+          analysis-kuromoji
     - name: Set up Node
       uses: actions/setup-node@38d90ce44d5275ad62cc48384b3d8a58c500bb5f
       with:
