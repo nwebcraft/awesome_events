@@ -14,13 +14,11 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
-
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['2.6', '2.7', '3.0']
-
+        ruby-version: ['2.6']
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby
@@ -31,7 +29,9 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - name: Run tests
+    - name: Build and test
+      env:
+        RAILS_ENV: test
       run: |
         sudo apt-get-yqq install libsqlite3-dev
         bundle install --jobs 4 --retry 3
